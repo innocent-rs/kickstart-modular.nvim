@@ -44,5 +44,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+local keymap = vim.api.nvim_set_keymap
+
+local opts = { noremap = true, silent = true }
+
+local modes = {'n', 'i', 'c', 'v'}
+
+local arrows = {'<Up>', '<Down>', '<Left>', '<Right>'}
+
+for _, mode in ipairs(modes) do
+  for _, key in ipairs(arrows) do
+    keymap(mode, key, '<Nop>', opts)
+  end
+end
 
 -- vim: ts=2 sts=2 sw=2 et
