@@ -203,6 +203,8 @@ return {
             },
           },
         },
+        nil_ls = {
+        },
       }
 
       -- Ensure the servers and tools above are installed
