@@ -24,7 +24,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -189,20 +189,21 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
+        --        lua_ls = {
+        --cmd = {"lua-language-server"},
+        -- cmd = { ... },
+        -- filetypes = { ... },
+        -- capabilities = {},
+        --settings = {
+        --Lua = {
+        --completion = {
+        --callSnippet = 'Replace',
+        --},
+        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+        -- diagnostics = { disable = { 'missing-fields' } },
+        --},
+        --},
+        --},
         nil_ls = {
         },
       }
@@ -234,6 +235,32 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+      require('lspconfig').lua_ls.setup {
+        cmd = { 'lua-language-server' },
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = 'Replace',
+            },
+          },
+        },
+      }
+      require('lspconfig').pylsp.setup {
+        settings = {
+          pylsp = {
+            plugins = {
+              pyflakes = { enabled = false },
+              pycodestyle = { enabled = false },
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              mccabe = { enabled = false },
+              pylsp_mypy = { enabled = false },
+              pylsp_black = { enabled = false },
+              pylsp_isort = { enabled = false },
+            }
+          }
+        }
       }
     end,
   },

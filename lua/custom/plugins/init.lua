@@ -3,5 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-	{"christoomey/vim-tmux-navigator"}
+	{ "christoomey/vim-tmux-navigator" },
+	{ 'tpope/vim-fugitive' }
 }
